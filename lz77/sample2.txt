@@ -1,0 +1,6 @@
+The encoding process described earlier is not practical, since it assumes that num-
+bers of unlimited precision can be stored in Low and High The decoding process de-
+scribed on page (“The decoder then eliminates the effect of the S from the code by
+The encoding process described earlier is not practical, since it assumes that num-
+bers of unlimited precision can be stored in Low and High The decoding process de-
+scribed on page (“The decoder then eliminates the effect of the S from the code by

@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+#include <bitset>
+#include<fstream>
+#include<queue>
+using namespace std;
+
+#include "CImg.h"
+using namespace cimg_library;
+
+struct tuple{
+	bitset<8> r;
+	bitset<8> g;
+	bitset<8> b;
+	int counter;
+};
+
+queue <struct> encode;
+
+
+void increment(int a,int inc){
+	a=a+inc;
+}
+
+int increase(int a,int inc){
+	return a+inc;
+}
+	
+
+void compress(CImg<unsigned char>& sourceImage){
+
+	int imageHeight = sourceImage.height();
+	int imageWidth = sourceImage.width();
+
+	cout << "Image Height : " 	<< imageHeight 		<<endl;
+	cout << "Image Width : "  	<< imageWidth   	<<endl;
+  	
+  		
+	  int k=2,i,j,s=l2.size();s--;
+		int g=1 ,z =3;
+	  bitset<8> binr,bing,binb,binr1,bing1,binb1,binr2,bing2,binb2;		    
+			tuple.r=sourceImage(0,0,0,0);
+			tuple.g=sourceImage(0,0,0,1);
+			tuple.b=sourceImage(0,0,0,2);
+			tuple.counter=1;
+
+		while(i!=imageHeight && j!=imageWidth){  
+			binr = sourceImage(j,i,0,0);				 
+			bing = sourceImage(j,i,0,1);
+			binb = sourceImage(j,i,0,2);
+			binr1 = sourceImage(j+1,i,0,0);				 
+			bing1 = sourceImage(j+1,i,0,1);
+			binb1 = sourceImage(j+1,i,0,2);
+			binr2 = sourceImage(j+2,i,0,0);				 
+			bing2 = sourceImage(j+2,i,0,1);
+			binb2 = sourceImage(j+2,i,0,2);
+
+
+
+			  if(binr==binr1 && bing==bing1 && binb==binb1){
+				tuple.counter++;
+				if(increase(j,1)>=imageWidth){
+					i++; j=0;
+				}
+
+				else {
+					increment(j,1);
+				}
+
+			  }
+
+			  else if((binr==binr2 && bing==bing2 && binb==binb2) ||(binr1==binr2 && bing1==bing2 && binb1==binb2) {
+				tuplecounter=tuplecounter+2;
+				if(increase(j,2)>=imageWidth && j==imageWidth-1){
+					i++; j=1;
+				}
+				if(increase(j,2)>=imageWidth && j==imageWidth-2){
+						i++; j=0;
+				}
+
+				else {
+
+					increment(j,2);
+				}
+			}
+
+			else {
+				encode.push(tuple);
+		
+				if(increase(j,1)>=imageWidth){
+					i++; j=0;
+				}
+
+				else {
+					increment(j,1);
+					tuple.r=sourceImage(j,i,0,0);
+					tuple.g=sourceImage(j,i,0,1);
+					tuple.b=sourceImage(j,i,0,2);
+					tuple.counter=1;
+				}
+			}
+		}
+}
+		
+	
+			
+			
+	
+
+int main() {
+
+	//string imageSource;
+	//string textFile;
+	//char option;
+	CImg<unsigned char> sourceImage("sample.jpg");
+
+
+	compress(sourceImage);
+	
+	return 0;
+}
+

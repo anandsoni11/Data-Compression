@@ -1,0 +1,8 @@
+The encoding process described earlier is not practical, since it assumes that num-
+bers of unlimited precision can be stored in Low and High. The decoding process de-
+scribed on page 111 (“The decoder then eliminates the effect of the S from the code by
+subtracting. . . and dividing . . . ”) is simple in principle but also impractical. The code,
+which is a single number, is normally long and may also be very long. A 1 Mbyte file
+may be encoded into, say, a 500 Kbyte one that consists of a single number. Dividing a
+500 Kbyte number is complex and slow.
+
